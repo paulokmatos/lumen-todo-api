@@ -8,7 +8,7 @@
 - MySQL  
   
 ### Development utilizing:  
-- TDD ( Test Domain Driven)  
+- TDD ( Test-Driven Development)  
 - Unite Tests (w/ PHPUnit)  
   
 # Description  
