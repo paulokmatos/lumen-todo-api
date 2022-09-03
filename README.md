@@ -1,24 +1,138 @@
-# Lumen PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+# Lumen Todo-API  
+  
+### Technologies:  
+- PHP 7.4+  
+- Laravel/Lumen Framework  
+- Composer 2.0  
+- MySQL  
+  
+### Development utilizing:  
+- TDD ( Test Domain Driven)  
+- Unite Tests (w/ PHPUnit)  
+  
+# Description  
+  
+A Simple API project build to practice TDD methodology and unit tests w/ PHPUnit.  
+  
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+# How to Setup
+#### You will need:
+PHP 7.4+
+Composer
+any SQL Database
 
-## Official Documentation
+    # Clone this Repository
+    $ - git clone https://github.com/paulokmatos/lumen-todo-api
+    $ - cd lumen-todo-api
+    $ - composer install
+    
+    # Make sure you added your env variables in .env.example file
+    $ - php artisan migrate:fresh 
+    $ - php -S localhost:8000 -t public
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
 
-## Contributing
+**Show Todos**  
+----  
+Returns json pagination with all todos.  
+  
+* **URL**  
+  
+  /todos  
+  
+* **Method:**  
+  
+ `GET`  
+  
+**Add Todo**  
+----  
+Add a new Todo on Database.  
+  
+* **URL**  
+  
+  /todos  
+  
+* **Method:**  
+  
+ `POST`  
+*  **URL Params**  
+ `title=[string]`  
+ `description=[string]`  
+ **Example:**  
+  
+ ```JSON {  
+   "title": "Do something",   
+   "description": "do something today 4:00PM"  
+  ```
+**Get Todo by ID**  
+----  
+  Returns a specific todo.  
+  
+* **URL**  
+  
+  /todos/:id  
+  
+* **Method:**  
+  
+ `GET`
+* **Returns Example:**
+```JSON
+{
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+"id": 2,
 
-## Security Vulnerabilities
+"title": "Do something",
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+"description": "do something today 4:00PM",
 
-## License
+"done": false,
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+"done_at": null,
+
+"created_at": "2022-09-03T20:54:47.000000Z",
+
+"updated_at": "2022-09-03T20:54:47.000000Z"
+
+}
+```
+
+**Update Todo status**  
+----  
+Update todo status.  
+  
+* **URL**  
+  
+  /todos/:id/status/:status
+  *The only two status accepted are: **done**  and **undone***
+  
+* **Method:**  
+  
+ `POST` 
+ *  **URL Params**  
+ `id=[integer]`  
+ `status=[string]`  
+* **Example:**
+	/todos/2/status/done
+```JSON
+{
+"id": 2,
+"title": "Do something",
+"description": "do something today 4:00PM",
+"done": true,
+"done_at": "2022-09-03T21:06:35.907222Z",
+"created_at": "2022-09-03T20:54:47.000000Z",
+"updated_at": "2022-09-03T21:06:35.000000Z"
+}
+```
+
+**Delete a Todo**
+---
+Delete a todo from database.
+
+* **URL**  
+ 
+  /todos/:id
+  
+  **Returned Status:** 
+  `204 No Content`
+  
